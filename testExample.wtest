@@ -1,9 +1,80 @@
-import example.pepita
+import flota.*
 
-describe "group of tests for pepita" {
+describe "groupo de test de Flota De Rodados" {
 
-  test "pepita has initial energy" {
-    assert.equals(100, pepita.energy())
+  test "se crea la dependencia Deportes con 45 empleados " {
+    const deportes = new Dependencia(cantidadEmpleados = 45)
+    assert.equals(45, deportes.cantidadEmpleados())
   }
+  
+  test "se crean las dependencias Deportes con 45 empleados y cultura con 31 empleados " {
+    const deportes = new Dependencia(cantidadEmpleados = 45)
+    const cultura = new Dependencia(cantidadEmpleados = 31)
+    assert.equals(45, deportes.cantidadEmpleados())
+    assert.equals(31, cultura.cantidadEmpleados())
+  }
+test "se crea el rodado Cachito que es un Corsa de color rojo " {
+    const cachito = new Corsa()
+    assert.equals("rojo", cachito.color())
+  }
+
+/*
+La flota de deportes incluye a: `cachito`, 
+un Corsa azul, un Corsa verde, un Kwid con el tanque adicional puesto;
+ y un auto especial con estas características: capacidad 5 pasajeros, 
+ velocidad máxima 160 km/h, peso 1200 kg, color beige.
+*/
+
+test "La flota de deportes incluye a varios rodados."{
+ const deportes = new Dependencia(cantidadEmpleados = 45)
+ const cachito = new Corsa()
+ const arturito = new Corsa(color = "verde")
+ const fierrito = new Corsa(color = "azul")
+ const  lauchita = new Kwid()
+ const velociraptor = new AutoEspecial(color = "beige", capacidad = 5, velMax = 160, peso = 1200)
+ deportes.agregarAFlota(cachito)
+ deportes.agregarAFlota(arturito)
+ deportes.agregarAFlota(fierrito)
+ deportes.agregarAFlota(lauchita)
+ assert.equals(4,deportes.flotaDeRodados().size())
+ assert.equals([cachito,arturito,fierrito,lauchita], deportes.flotaDeRodados())
+}
+
+
+/*
+Por su parte, cultura cuenta con: `cachito`; dos Kwid con el tanque adicional
+ puesto; un Kwid más, este sin el tanque adicional;
+  y la Trafic, configurada con el interior popular y el motor batatón.
+*/
+test "La flota de cultura incluye a varios rodados."{
+ const cultura = new Dependencia(cantidadEmpleados = 31)
+ const cachito = new Corsa()
+ const martita = new Kwid()
+ const anita = new Kwid()
+ trafic.cambiarInterior(popular)
+ trafic.cambiarMotor(bataton)
+ cultura.agregarAFlota(cachito)
+ cultura.agregarAFlota(martita)
+ cultura.agregarAFlota(anita)
+ cultura.agregarAFlota(trafic)
+ assert.equals(4,cultura.flotaDeRodados().size())
+ assert.equals([cachito,martita,anita,trafic], cultura.flotaDeRodados())
+}
+ 
+/*
+Para cada dependencia, hacer asserts sobre: el peso total de la flota,
+ si está o no bien equipada, la capacidad total en color azul, 
+ el color del rodado más rápido, si es grande o no, y la capacidad faltante. 
+
+Va una ayudita: la capacidad faltante de deportes es de 25 personas 
+(la flota puede llevar: 12 personas en los 3 Corsa, más 3 del Kwid y 
+5 del auto especial; total 20), mientras que la de cultura es de 5 personas
+ (puede llevar en total 26: 6 de los Kwid con tanque adicional, 
+ más 4 de la Kwid sin tanque, más 4 de cachito,
+ más 12 de la Trafic dado que tiene el interior popular).	
+
+*/
+
+
 
 }
