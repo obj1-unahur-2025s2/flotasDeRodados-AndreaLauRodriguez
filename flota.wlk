@@ -1,4 +1,4 @@
-
+import pedidos.*
 
   class Corsa{
     var color = rojo
@@ -90,9 +90,16 @@ class AutoEspecial {
 }
 
 
+
+
+
+
+
+
 class Dependencia{
   var cantidadEmpleados = 50
    const flotaDeRodados = []
+   const pedidosQueHace=[]
    method flotaDeRodados() = flotaDeRodados
    method agregarAFlota(unRodado){
     flotaDeRodados.add(unRodado)
@@ -159,8 +166,35 @@ method esGrande(){
   return cantidadEmpleados >= 40 and flotaDeRodados.size() >= 5
 }
 
+method agregarPedido(unPedido){
+    pedidosQueHace.add(unPedido)
+}
+method quitarPedido(unPedido){
+  pedidosQueHace.remove(unPedido)
+}
+
+method totalPasajerosRegistrados(){
+  pedidosQueHace.sum({ c => c.cantidadDePasajeros()})
+}
+
+method noPuedenSerSatisfechosPorNinguno(){
+  pedidosQueHace.filter({c => })//TERMINAR
+}
+
 
 }
+
+/*
+
+cuáles de los pedidos que tiene registrados no puede ser satisfecho por ninguno 
+de los autos afectados a la dependencia.
+dado un color, si es cierto que todos los pedidos registrados lo tienen como color incompatible.
+También debe ser posible, enviando un mensaje al objeto que representa a una dependencia, 
+relajar todos los pedidos que tenga registrados.
+
+*/
+
+
 
 object rojo{
   
@@ -196,6 +230,11 @@ el total de pasajeros en los pedidos que tiene registrados
 cuáles de los pedidos que tiene registrados no puede ser satisfecho por ninguno de los autos afectados a la dependencia.
 dado un color, si es cierto que todos los pedidos registrados lo tienen como color incompatible.
 También debe ser posible, enviando un mensaje al objeto que representa a una dependencia, relajar todos los pedidos que tenga registrados.
+
+
+
+
+
 
 */
 
