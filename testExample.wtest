@@ -1,6 +1,7 @@
 import flota.*
+import pedidos.*
 
-describe "groupo de test de Flota De Rodados" {
+describe "grupo de test de Flota De Rodados" {
 
   test "se crea la dependencia Deportes con 45 empleados " {
     const deportes = new Dependencia(cantidadEmpleados = 45)
@@ -15,7 +16,7 @@ describe "groupo de test de Flota De Rodados" {
   }
 test "se crea el rodado Cachito que es un Corsa de color rojo " {
     const cachito = new Corsa()
-    assert.equals("rojo", cachito.color())
+    assert.equals(rojo, cachito.color())
   }
 
 /*
@@ -28,16 +29,17 @@ un Corsa azul, un Corsa verde, un Kwid con el tanque adicional puesto;
 test "La flota de deportes incluye a varios rodados."{
  const deportes = new Dependencia(cantidadEmpleados = 45)
  const cachito = new Corsa()
- const arturito = new Corsa(color = "verde")
- const fierrito = new Corsa(color = "azul")
+ const arturito = new Corsa(color = verde)
+ const fierrito = new Corsa(color = azul)
  const  lauchita = new Kwid()
- const velociraptor = new AutoEspecial(color = "beige", capacidad = 5, velMax = 160, peso = 1200)
+ const velociraptor = new AutoEspecial(color = beige, capacidad = 5, velMax = 160, peso = 1200)
  deportes.agregarAFlota(cachito)
  deportes.agregarAFlota(arturito)
  deportes.agregarAFlota(fierrito)
  deportes.agregarAFlota(lauchita)
- assert.equals(4,deportes.flotaDeRodados().size())
- assert.equals([cachito,arturito,fierrito,lauchita], deportes.flotaDeRodados())
+ deportes.agregarAFlota(velociraptor)
+ assert.equals(5,deportes.flotaDeRodados().size())
+ assert.equals([cachito,arturito,fierrito,lauchita,velociraptor], deportes.flotaDeRodados())
 }
 
 
@@ -61,20 +63,217 @@ test "La flota de cultura incluye a varios rodados."{
  assert.equals([cachito,martita,anita,trafic], cultura.flotaDeRodados())
 }
  
+
+test "Peso total de la flota de deportes."{
+ const deportes = new Dependencia(cantidadEmpleados = 45)
+ const cachito = new Corsa()
+ const arturito = new Corsa(color = verde)
+ const fierrito = new Corsa(color = azul)
+ const  lauchita = new Kwid()
+ const velociraptor = new AutoEspecial(color = beige, capacidad = 5, velMax = 160, peso = 1200)
+ deportes.agregarAFlota(cachito)
+ deportes.agregarAFlota(arturito)
+ deportes.agregarAFlota(fierrito)
+ deportes.agregarAFlota(lauchita)
+ deportes.agregarAFlota(velociraptor)
+ assert.equals(6450 , deportes.pesoTotalFlota())
+}
+
+test "Peso total de la flota de cultura."{
+ const cultura = new Dependencia(cantidadEmpleados = 31)
+ const cachito = new Corsa()
+ const martita = new Kwid()
+ const anita = new Kwid()
+ trafic.cambiarInterior(popular)
+ trafic.cambiarMotor(bataton)
+ cultura.agregarAFlota(cachito)
+ cultura.agregarAFlota(martita)
+ cultura.agregarAFlota(anita)
+ cultura.agregarAFlota(trafic)
+ assert.equals(9700,cultura.pesoTotalFlota())
+ 
+}
+
+test "Esta bien equipada la flota de cultura."{
+ const cultura = new Dependencia(cantidadEmpleados = 31)
+ const cachito = new Corsa()
+ const martita = new Kwid()
+ const anita = new Kwid()
+ trafic.cambiarInterior(popular)
+ trafic.cambiarMotor(bataton)
+ cultura.agregarAFlota(cachito)
+ cultura.agregarAFlota(martita)
+ cultura.agregarAFlota(anita)
+ cultura.agregarAFlota(trafic)
+ assert.that(cultura.estaBienEquipada())
+ 
+}
+
+test "Esta bien equipada la flota de deportes."{
+ const deportes = new Dependencia(cantidadEmpleados = 45)
+ const cachito = new Corsa()
+ const arturito = new Corsa(color = verde)
+ const fierrito = new Corsa(color = azul)
+ const  lauchita = new Kwid()
+ const velociraptor = new AutoEspecial(color = beige, capacidad = 5, velMax = 160, peso = 1200)
+ deportes.agregarAFlota(cachito)
+ deportes.agregarAFlota(arturito)
+ deportes.agregarAFlota(fierrito)
+ deportes.agregarAFlota(lauchita)
+ deportes.agregarAFlota(velociraptor)
+ assert.that(deportes.estaBienEquipada())
+}
+
+test "Capacidad Total color azul de la flota de deportes."{
+ const deportes = new Dependencia(cantidadEmpleados = 45)
+ const cachito = new Corsa()
+ const arturito = new Corsa(color = verde)
+ const fierrito = new Corsa(color = azul)
+ const  lauchita = new Kwid()
+ const velociraptor = new AutoEspecial(color = beige, capacidad = 5, velMax = 160, peso = 1200)
+ deportes.agregarAFlota(cachito)
+ deportes.agregarAFlota(arturito)
+ deportes.agregarAFlota(fierrito)
+ deportes.agregarAFlota(lauchita)
+ deportes.agregarAFlota(velociraptor)
+ assert.equals(7,deportes.capacidadTotalEnColor(azul))
+}
+
+test "Capacidad Total color azul de la flota de cultura."{
+ const cultura = new Dependencia(cantidadEmpleados = 31)
+ const cachito = new Corsa()
+ const martita = new Kwid()
+ const anita = new Kwid()
+ trafic.cambiarInterior(popular)
+ trafic.cambiarMotor(bataton)
+ cultura.agregarAFlota(cachito)
+ cultura.agregarAFlota(martita)
+ cultura.agregarAFlota(anita)
+ cultura.agregarAFlota(trafic)
+ assert.equals(6,cultura.capacidadTotalEnColor(azul))
+ 
+}
+
+
+
+test "El color del rodado mas rapido de la flota de cultura es rojo."{
+ const cultura = new Dependencia(cantidadEmpleados = 31)
+ const cachito = new Corsa()
+ const martita = new Kwid()
+ const anita = new Kwid()
+ trafic.cambiarInterior(popular)
+ trafic.cambiarMotor(bataton)
+ cultura.agregarAFlota(cachito)
+ cultura.agregarAFlota(martita)
+ cultura.agregarAFlota(anita)
+ cultura.agregarAFlota(trafic)
+ assert.equals(rojo,cultura.colorDelRodadoMasRapido())
+ 
+}
+
+test "El color del rodado mas rapido de la flota de deportes es beige."{
+ const deportes = new Dependencia(cantidadEmpleados = 45)
+ const cachito = new Corsa()
+ const arturito = new Corsa(color = verde)
+ const fierrito = new Corsa(color = azul)
+ const  lauchita = new Kwid()
+ const velociraptor = new AutoEspecial(color = beige, capacidad = 5, velMax = 160, peso = 1200)
+ deportes.agregarAFlota(cachito)
+ deportes.agregarAFlota(arturito)
+ deportes.agregarAFlota(fierrito)
+ deportes.agregarAFlota(lauchita)
+ deportes.agregarAFlota(velociraptor)
+ assert.equals(beige,deportes.colorDelRodadoMasRapido())
+}
+
+
+
+test "La flota de cultura no es grande."{
+ const cultura = new Dependencia(cantidadEmpleados = 31)
+ const cachito = new Corsa()
+ const martita = new Kwid()
+ const anita = new Kwid()
+ trafic.cambiarInterior(popular)
+ trafic.cambiarMotor(bataton)
+ cultura.agregarAFlota(cachito)
+ cultura.agregarAFlota(martita)
+ cultura.agregarAFlota(anita)
+ cultura.agregarAFlota(trafic)
+ assert.that(not cultura.esGrande())
+ 
+}
+
+test "La flota de deportes es grande."{
+ const deportes = new Dependencia(cantidadEmpleados = 45)
+ const cachito = new Corsa()
+ const arturito = new Corsa(color = verde)
+ const fierrito = new Corsa(color = azul)
+ const  lauchita = new Kwid()
+ const velociraptor = new AutoEspecial(color = beige, capacidad = 5, velMax = 160, peso = 1200)
+ deportes.agregarAFlota(cachito)
+ deportes.agregarAFlota(arturito)
+ deportes.agregarAFlota(fierrito)
+ deportes.agregarAFlota(lauchita)
+ deportes.agregarAFlota(velociraptor)
+ assert.that(not deportes.esGrande())
+}
+
+
+
+test "La capacidad faltante de la flota de cultura es de 5 personas."{
+ const cultura = new Dependencia(cantidadEmpleados = 31)
+ const cachito = new Corsa()
+ const martita = new Kwid()
+ const anita = new Kwid()
+ trafic.cambiarInterior(popular)
+ trafic.cambiarMotor(bataton)
+ cultura.agregarAFlota(cachito)
+ cultura.agregarAFlota(martita)
+ cultura.agregarAFlota(anita)
+ cultura.agregarAFlota(trafic)
+ assert.equals(5,cultura.capacidadFaltante())
+ 
+}
+
+test "La capacidad faltante de la flota de deportes es de 25 personas."{
+ const deportes = new Dependencia(cantidadEmpleados = 45)
+ const cachito = new Corsa()
+ const arturito = new Corsa(color = verde)
+ const fierrito = new Corsa(color = azul)
+ const  lauchita = new Kwid()
+ const velociraptor = new AutoEspecial(color = beige, capacidad = 5, velMax = 160, peso = 1200)
+ deportes.agregarAFlota(cachito)
+ deportes.agregarAFlota(arturito)
+ deportes.agregarAFlota(fierrito)
+ deportes.agregarAFlota(lauchita)
+ deportes.agregarAFlota(velociraptor)
+ assert.equals(25, deportes.capacidadFaltante())
+}
+
 /*
-Para cada dependencia, hacer asserts sobre: el peso total de la flota,
- si está o no bien equipada, la capacidad total en color azul, 
- el color del rodado más rápido, si es grande o no, y la capacidad faltante. 
 
-Va una ayudita: la capacidad faltante de deportes es de 25 personas 
-(la flota puede llevar: 12 personas en los 3 Corsa, más 3 del Kwid y 
-5 del auto especial; total 20), mientras que la de cultura es de 5 personas
- (puede llevar en total 26: 6 de los Kwid con tanque adicional, 
- más 4 de la Kwid sin tanque, más 4 de cachito,
- más 12 de la Trafic dado que tiene el interior popular).	
 
-*/
+Para que un auto pueda satisfacer un pedido se tienen que dar tres condiciones:
 
+que la velocidad máxima del auto sea al menos 10 km/h mayor a la velocidad requerida del pedido;
+que la capacidad del auto dé para la cantidad de pasajeros del viaje; y
+que el auto no sea de un color incompatible para el viaje.
+P.ej. consideremos al auto al que llamamos cachito en el test de la etapa 1
+ (recordemos: capacidad 4 pasajeros, velocidad máxima 150 km/h, color rojo).
+
+este auto puede satisfacer un pedido de 960 kms con tiempo máximo de 8 horas 
+(lo que da una velocidad requerida de 120 km/h), para 4 pasajeros donde los colores incompatibles son azul y negro.
+si agregamos el rojo a los colores incompatibles, o cambiamos la cantidad de pasajeros a 6,
+ entonces cachito ya no puede satisfacer el pedido.
+lo mismo si cambiamos el tiempo máximo a 6 horas, porque eso nos daría una velocidad requerida de 160 km/h.
+Armar un test que compruebe esta especificación.
+
+
+Además, los objetos que representan pedidos deben entender estos mensajes:
+ acelerar disminuye en uno el tiempo máximo (p.ej. lo hace pasar de 8 horas a 7),
+  y relajar que lo aumenta en uno (p.ej. lo hace pasar de 8 horas a 9).
+
+  */
 
 
 }

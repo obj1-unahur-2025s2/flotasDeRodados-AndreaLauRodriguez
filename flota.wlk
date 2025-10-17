@@ -1,7 +1,7 @@
 
 
   class Corsa{
-    var color = "rojo"
+    var color = rojo
     method capacidad() = 4
     method velMax()=150
     method peso()=1300
@@ -29,7 +29,7 @@ class  Kwid{
     method sacarTuboGas(){
       tieneTuboGas = false
     }
-    method color() = "azul"
+    method color() = azul
 
 }
 
@@ -54,7 +54,7 @@ object trafic{
       method peso(){
         return 4000 + interior.peso() + motor.peso()
       }
-       method color() = "blanco"
+       method color() = blanco
 }
 
 
@@ -83,7 +83,7 @@ object bataton{
 }
 
 class AutoEspecial {
-  var property color = "rojo"
+  var property color = rojo
   const property  peso
   const property capacidad
   const property velMax
@@ -162,7 +162,42 @@ method esGrande(){
 
 }
 
+object rojo{
+  
+}
 
+object azul{
+  
+}
+
+object blanco{
+  
+}
+
+object verde{
+  
+}
+
+object negro{
+  
+}
+
+object beige{
+  
+}
+
+/*
+Etapa 3: registro de los pedidos de cada dependencia
+Agregar a cada dependencia un registro de los pedidos que hace. Se pueden agregar y quitar pedidos.
+
+Agregar lo que haga falta al modelo para que se pueda conocer, para una dependencia:
+
+el total de pasajeros en los pedidos que tiene registrados
+cuáles de los pedidos que tiene registrados no puede ser satisfecho por ninguno de los autos afectados a la dependencia.
+dado un color, si es cierto que todos los pedidos registrados lo tienen como color incompatible.
+También debe ser posible, enviando un mensaje al objeto que representa a una dependencia, relajar todos los pedidos que tenga registrados.
+
+*/
 
 
 
