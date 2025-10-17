@@ -215,7 +215,7 @@ test "La flota de deportes es grande."{
  deportes.agregarAFlota(fierrito)
  deportes.agregarAFlota(lauchita)
  deportes.agregarAFlota(velociraptor)
- assert.that(not deportes.esGrande())
+ assert.that(deportes.esGrande())
 }
 
 
